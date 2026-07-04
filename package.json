@@ -1,0 +1,17 @@
+{
+  "name": "black-room-simulator",
+  "version": "1.0.0",
+  "description": "百闻牌比赛外置式神 Ban/Pick 系统",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && node index.js",
+    "client": "cd client && npx vite --host",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npx vite build",
+    "start": "cd client && npx vite build && cd ../server && node index.js",
+    "prod": "npm run build && npm run server"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

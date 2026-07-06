@@ -80,6 +80,17 @@ const WALLPAPER_DIR = join(__dirname, '壁纸类图片');
 app.use('/wallpapers', express.static(WALLPAPER_DIR));
 // Serve client build in production
 const CLIENT_DIST = join(__dirname, '..', 'client', 'dist');
+
+// Explicit root route for Railway health check
+app.get('/', (req, res) => {
+  const indexPath = join(CLIENT_DIST, 'index.html');
+  if (existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(200).send('BRS OK');
+  }
+});
+
 app.use(express.static(CLIENT_DIST));
 // SPA fallback: all non-API routes go to index.html
 app.get('*', (req, res, next) => {

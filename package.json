@@ -8,8 +8,8 @@
     "client": "cd client && npx vite --host",
     "install:all": "npm install && cd server && npm install && cd ../client && npm install",
     "build": "cd client && npx vite build",
-    "start": "npm run build && npm run server",
-    "prod": "npm run build && npm run server"
+    "start": "npm run build && node server/index.js",
+    "prod": "npm run build && node server/index.js"
   },
   "dependencies": {
     "concurrently": "^8.2.2"

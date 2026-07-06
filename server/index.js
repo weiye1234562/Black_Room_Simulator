@@ -108,8 +108,10 @@ app.get('*', (req, res, next) => {
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: { origin: '*', methods: ['GET', 'POST'] },
-  pingTimeout: 10000,
-  pingInterval: 5000,
+  pingTimeout: 60000,    // 60s timeout before disconnect
+  pingInterval: 15000,   // ping every 15s to keep alive
+  connectTimeout: 30000,
+  transports: ['websocket', 'polling'], // prefer WebSocket, fallback to polling
 });
 
 // --- Game Constants ---

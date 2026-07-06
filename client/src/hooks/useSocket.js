@@ -15,8 +15,11 @@ export function useSocket() {
 
     const socket = io(SERVER_URL, {
       reconnection: true,
-      reconnectionAttempts: 10,
+      reconnectionAttempts: Infinity,
       reconnectionDelay: 1000,
+      reconnectionDelayMax: 5000,
+      randomizationFactor: 0.5,
+      transports: ['websocket', 'polling'],
     });
 
     socket.on('connect', () => setConnected(true));

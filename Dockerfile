@@ -36,6 +36,6 @@ COPY --from=builder /app/server/index.js ./server/
 COPY server/百闻牌卡面图/ ./server/百闻牌卡面图/
 COPY server/壁纸类图片/ ./server/壁纸类图片/
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD ["node", "server/index.js"]

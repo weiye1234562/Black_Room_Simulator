@@ -575,7 +575,7 @@ function emitRoomState(code) {
 }
 
 // --- Start Server ---
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 console.log(`[BRS] Starting on PORT=${PORT}`);
 console.log(`[BRS] CLIENT_DIST exists: ${existsSync(CLIENT_DIST)}`);
 console.log(`[BRS] CARDS_DIR exists: ${existsSync(CARDS_DIR)}`);

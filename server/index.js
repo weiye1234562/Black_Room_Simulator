@@ -80,16 +80,19 @@ const WALLPAPER_DIR = join(__dirname, '壁纸类图片');
 app.use('/wallpapers', express.static(WALLPAPER_DIR));
 // Serve client build in production
 const CLIENT_DIST = join(__dirname, '..', 'client', 'dist');
-if (existsSync(CLIENT_DIST)) {
-  app.use(express.static(CLIENT_DIST));
-  // SPA fallback: all non-API routes go to index.html
-  app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/socket.io') || req.path.startsWith('/cards') || req.path.startsWith('/wallpapers')) {
-      return next();
-    }
-    res.sendFile(join(CLIENT_DIST, 'index.html'));
-  });
-}
+app.use(express.static(CLIENT_DIST));
+// SPA fallback: all non-API routes go to index.html
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/socket.io') || req.path.startsWith('/cards') || req.path.startsWith('/wallpapers')) {
+    return next();
+  }
+  const indexPath = join(CLIENT_DIST, 'index.html');
+  if (existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(200).send('Black Room Simulator - API Server');
+  }
+});
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {

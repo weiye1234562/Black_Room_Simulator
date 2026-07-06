@@ -572,7 +572,7 @@ function emitRoomState(code) {
 }
 
 // --- Start Server ---
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 httpServer.listen(PORT, () => {
   console.log(`[BRS Server] Running on http://localhost:${PORT}`);
 });

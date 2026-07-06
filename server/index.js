@@ -573,6 +573,14 @@ function emitRoomState(code) {
 
 // --- Start Server ---
 const PORT = process.env.PORT || 8080;
-httpServer.listen(PORT, () => {
-  console.log(`[BRS Server] Running on http://localhost:${PORT}`);
+console.log(`[BRS] Starting on PORT=${PORT}`);
+console.log(`[BRS] CLIENT_DIST exists: ${existsSync(CLIENT_DIST)}`);
+console.log(`[BRS] CARDS_DIR exists: ${existsSync(CARDS_DIR)}`);
+console.log(`[BRS] WALLPAPER_DIR exists: ${existsSync(WALLPAPER_DIR)}`);
+
+// Health check endpoint (Railway needs this)
+app.get('/health', (req, res) => res.status(200).send('OK'));
+
+httpServer.listen(PORT, '0.0.0.0', () => {
+  console.log(`[BRS Server] Running on http://0.0.0.0:${PORT}`);
 });

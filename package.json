@@ -12,6 +12,7 @@
     "prod": "npm run build && node server/index.js"
   },
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "sharp": "^0.35.3"
   }
 }

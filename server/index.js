@@ -48,7 +48,7 @@ function buildImageIndex() {
       if (!id) continue;
 
       const files = readdirSync(join(expDir, entry.name))
-        .filter(f => f.endsWith('.png') || f.endsWith('.jpg'))
+        .filter(f => f.endsWith('.jpg') || f.endsWith('.png'))
         .sort();
       index[id] = {
         dir: encodeURIComponent(exp.folder) + '/' + encodeURIComponent(entry.name),
